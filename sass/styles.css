@@ -42,12 +42,8 @@ body {
 .container ul {
   list-style: none;
 }
-.container ul .icon img {
-  width: 100px;
-  height: 100px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
+.container ul .icon {
+  font-size: 5rem;
 }
 .container ul .temperature {
   font-size: 48px;

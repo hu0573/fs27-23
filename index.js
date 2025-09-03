@@ -29,6 +29,24 @@ const WMO = {
   99: "⛈️ Thunderstorm with heavy hail",
 };
 
+const renderWeatherData = (weatherData) => {
+  const iconEl = weatherDataEl.querySelector(".icon");
+  iconEl.textContent = Array.from(weatherData.description)[0];
+
+  const temperatureEl = weatherDataEl.querySelector(".temperature");
+  temperatureEl.textContent = weatherData.temperature;
+
+  const descriptionEl = weatherDataEl.querySelector(".description");
+  descriptionEl.textContent = weatherData.description;
+
+  const detailsEl = weatherDataEl.querySelector(".details");
+  detailsEl.innerHTML = `
+  <div>Feels like: ${weatherData.feelsLike}</div>
+  <div>Humidity: ${weatherData.humidity}</div>
+  <div>Wind speed: ${weatherData.windSpeed}</div>
+  `;
+};
+
 const getWeatherData = async (cityValue) => {
   console.log("city", cityValue);
   const url = `https://geocoding-api.open-meteo.com/v1/search?name=${cityValue}`;
@@ -67,7 +85,7 @@ const getWeatherData = async (cityValue) => {
       windSpeed: `${cur.windspeed_10m} m/s`,
     };
     console.log("step3", result);
-    return result;
+    renderWeatherData(result);
   } catch (error) {
     console.error(error);
   }
